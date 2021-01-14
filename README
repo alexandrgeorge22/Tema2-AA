@@ -10,17 +10,20 @@ colorarea in culori diferite a fiecaror doua noduri intre care exista o muchie.
 Clauzele generate le-am impartit in 3 tipuri si anume:
 	Tipul 1: fiecare nod trebuie sa fie colorat cu o singura culoare. De 
 exemplu: daca consideram un nod x si culorile respectiv spionii de la 1 la 3 
-clauzele vor fi : ¬x1V¬x2, ¬x1V¬x3, ¬x2V¬x3. Am observat ca pentru a scrie acest
-tip de clauza imi este util sa fac un set cu numerele spionilor, de exemplu 
-{1,2,3} iar apoi sa scriu toate combinarile de cate 2 elemente.Functia ce 
-genereaza aceste combinari este preluata de pe https://www.geeksforgeeks.org/
+clauzele vor fi : ¬x1V¬x2, ¬x1V¬x3, ¬x2V¬x3. Am observat ca pentru a scrie 
+acest tip de clauza imi este util sa fac un set cu numerele spionilor, de 
+exemplu {1,2,3} iar apoi sa scriu toate combinarile de cate 2 elemente.
+
+Functia ce genereaza aceste combinari este preluata de pe 
+https://www.geeksforgeeks.org/
 print-all-possible-combinations-of-r-elements-in-a-given-array-of-size-n/ si
 am modificat-o pentru a fi utila in programul meu.
 	Tipul 2: fiecare nod trebuie sa fie colorat adica sa ii fie atribuit un
 spion. De exemplu : daca consideram nodul x si un numar de 4 spioni, clauza
 o sa fie x1 V x2 V x3 V x4.
-	Tipul 3: fiecare doua noduri adiacente trebuie colorate in culori diferite,
-adica fiecarei familii care se inteleg trebuie sa asignam spioni diferiti. 
+	Tipul 3: fiecare doua noduri adiacente trebuie colorate in culori 
+diferite,adica fiecarei familii care se inteleg trebuie sa asignam spioni 
+diferiti. 
 De exemplu daca consideram nodurile x si y adiacente, clauzele in cazul in care
 avem 2 spioni o sa fie : ¬x1 V ¬y1, ¬x2 V ¬y2.
 Pentru codificarea spionilor si descrifrarea raspunsului de la oracol am 
@@ -29,7 +32,7 @@ Sa zicem ca avem un graf cu doua familii/noduri si 3 spioni. Consideram Xis
 unde i reprezinta numarul familiei si s numarul spionului. Codificarea sub
 forma unei matrice ar fi:
 X11  X12  X13         1  2  3
-				-->   			unde Xis = (i-1)*Numar_spioni + s
+				-->   	unde Xis = (i-1)*Numar_spioni + s
 X21  X22  X23         4  5  6
 
 Clauzele au fost formate urmand indicatiile din link-ul urmator:
@@ -38,14 +41,14 @@ https://www.researchgate.net/publication/
 5721424d08ae0926eb45bd3f/Satisfiability-Methods-for-Colouring-Graphs.pdf
 
 Task2 - Investigatiilee Familiilor Extinse
-Pentru rezolvarea acestui task, am pastrat asemanarea familiilor si conexiunilor
-dintre ele cu un graf neorientat iar descoperirea familiei extinse cautate cu
-gasirea unui clici de marime precizata in input. Clauzele generate le-am 
-impartit astfel:
+Pentru rezolvarea acestui task, am pastrat asemanarea familiilor si 
+conexiunilor dintre ele cu un graf neorientat iar descoperirea familiei extinse
+cautate cu gasirea unui clici de marime precizata in input. Clauzele generate
+le-am impartit astfel:
 	Tip 1: daca doua noduri nu sunt adiacente, acestea nu pot fi in clica.
 	∀{i, j | i != j} ∀{v, w ∈ V |(v, w) !∈ E ∧ v != w} ¬xiv ∨ ¬xjw
 	
-	Tip 2: un nod nu poate sa apara decat maximum o singura data intr-o clica
+	Tip 2:un nod nu poate sa apara decat maxim o singura data intr-o clica
 	∀[i, j | i != j] ∀[v ∈ V ] ¬xiv ∨ ¬xjv
 
 	Tip 3: un nod x poate sa fie al i-lea nod din clica
@@ -58,7 +61,7 @@ Clauzele au fost formate folosind indicatiile din link-ul urmator:
 https://drive.google.com/file/d/1bvZmBBm9F98rMjsS_fcLFJgpTZ4xgC_B/view
 
 Task3 - Arestarile Mafiotilor
-Pentru rezolvarea acestui task, am redus problema la cea de la task-ul 2 astfel:
+Pentru rezolvarea acestui task, am redus problema la cea de la task 2 astfel:
 Pornind de la graful familiilor generat initial din input, construim 
 complementul acestui graf. Apoi, folosind implementarea de la task-ul 2 cautam
 clica de ordin maximal din graful rezultat. Astfel, oracolul ne va zice care 

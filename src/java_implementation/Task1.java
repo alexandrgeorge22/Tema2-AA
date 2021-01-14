@@ -90,7 +90,7 @@ public class Task1 extends Task {
 
     @Override
     public void formulateOracleQuestion() throws IOException {
-        FileWriter fileWriter = new FileWriter(oracleInFilename);
+        FileWriter fileWriter = new FileWriter(this.oracleInFilename);
         int clausesNo = this.familiesNo * (1 + spiesNo) + this.edgeNo * this.spiesNo;
         int variablesNo = this.familiesNo * this.spiesNo;
         fileWriter.write("p cnf " + variablesNo + " " + clausesNo + "\n");
