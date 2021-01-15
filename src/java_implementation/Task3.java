@@ -17,7 +17,6 @@ import java.util.Scanner;
 public class Task3 extends Task {
     String task2InFilename;
     String task2OutFilename;
-    // TODO: define necessary variables and/or data structures
 
     private Integer familiesNo;
     private Integer cliqueSize;
@@ -37,6 +36,7 @@ public class Task3 extends Task {
         reduceToTask2();
         task2Solver.solve();
         extractAnswerFromTask2();
+        // Cauta clica de ordin maxim
         while (this.ok.equals("False")) {
             this.cliqueSize--;
             reduceToTask2();
@@ -54,6 +54,7 @@ public class Task3 extends Task {
         this.familiesNo = Integer.valueOf(line[0]);
         this.edgeNo = Integer.valueOf(line[1]);
         this.graph = new Integer[this.familiesNo + 1][this.familiesNo + 1];
+        // Construieste complementul grafului initial
         for (int i = 0; i <= this.familiesNo; i++) {
             for (int j = 0; j <= this.familiesNo; j++) {
                 graph[i][j] = 1;
@@ -65,6 +66,7 @@ public class Task3 extends Task {
             this.graph[Integer.parseInt(line[1])][Integer.parseInt(line[0])] = 0;
         }
         reader.close();
+        // Construieste o lista cu toate muchiile din graful generat anterior
         this.edges = new ArrayList<>();
         for (int i = 1; i < this.familiesNo; i++) {
             for (int j = i + 1; j <= this.familiesNo; j++) {
@@ -76,7 +78,11 @@ public class Task3 extends Task {
         }
     }
 
-
+    /**
+     * Scrie input-ul problemei in acelasi format cu cel de la task2
+     *
+     * @throws IOException
+     */
     public void reduceToTask2() throws IOException {
         FileWriter fileWriter = new FileWriter(this.task2InFilename);
         fileWriter.write(this.familiesNo + " " + this.edges.size()
@@ -102,7 +108,6 @@ public class Task3 extends Task {
 
     @Override
     public void writeAnswer() throws IOException {
-        // TODO: write the answer to the current problem (outFilename)
         FileWriter fileWriter = new FileWriter(outFilename);
         if (this.ok.equals("True")) {
             for (int i = 1; i <= this.familiesNo; i++) {
@@ -111,7 +116,6 @@ public class Task3 extends Task {
                 }
             }
         }
-
         fileWriter.close();
     }
 }
